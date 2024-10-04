@@ -15,7 +15,7 @@ class WeatherChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.20,
+      height: MediaQuery.of(context).size.height * 0.27,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.blueGrey[900],
@@ -34,11 +34,15 @@ class WeatherChart extends StatelessWidget {
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-                reservedSize: 40,
+                reservedSize: 50, // Increased reserved size
+                interval: 5,
                 getTitlesWidget: (value, meta) {
-                  return Text(
-                    value.toInt().toString(),
-                    style: const TextStyle(color: Colors.white),
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8.0), // Added padding
+                    child: Text(
+                      value.toInt().toString(),
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   );
                 },
               ),
@@ -46,17 +50,27 @@ class WeatherChart extends StatelessWidget {
             bottomTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-                reservedSize: 30,
+                reservedSize: 40, // Increased reserved size
+                interval: 1,
                 getTitlesWidget: (value, meta) {
                   switch (value.toInt()) {
                     case 0:
-                      return const Text('Today', style: TextStyle(color: Colors.white));
+                      return const Padding(
+                        padding: EdgeInsets.only(top: 15.0), // Added padding
+                        child: Text('Today', style: TextStyle(color: Colors.white)),
+                      );
                     case 1:
-                      return const Text('Tomorrow', style: TextStyle(color: Colors.white));
+                      return const Padding(
+                        padding: EdgeInsets.only(top: 15.0), // Added padding
+                        child: Text('Tomorrow', style: TextStyle(color: Colors.white)),
+                      );
                     case 2:
-                      return const Text('Day 3', style: TextStyle(color: Colors.white));
+                      return const Padding(
+                        padding: EdgeInsets.only(top: 15.0,right: 8), // Added padding
+                        child: Text('Day 3', style: TextStyle(color: Colors.white)),
+                      );
                     default:
-                      return const Text('', style: TextStyle(color: Colors.white));
+                      return const SizedBox(); // Return empty widget instead of an empty Text
                   }
                 },
               ),
@@ -66,7 +80,13 @@ class WeatherChart extends StatelessWidget {
             show: true,
             border: Border.all(color: Colors.white.withOpacity(0.3), width: 1),
           ),
-          gridData: FlGridData(show: true, drawHorizontalLine: true),
+          gridData: const FlGridData(
+            show: true,
+            drawHorizontalLine: true,
+            horizontalInterval: 5,
+            drawVerticalLine: true,
+            verticalInterval: 1, // Ensure this is consistent with x-axis intervals
+          ),
           lineBarsData: [
             LineChartBarData(
               isCurved: true,
@@ -76,16 +96,25 @@ class WeatherChart extends StatelessWidget {
                 FlSpot(1, weather.forecast[1].temperature.toDouble()),
                 FlSpot(2, weather.forecast[2].temperature.toDouble()),
               ],
-              dotData: FlDotData(show: true, getDotPainter: (spot, percent, barData, index) {
-                return FlDotCirclePainter(color: Colors.white, strokeWidth: 2, strokeColor: Colors.blue);
-              }),
+              dotData: FlDotData(
+                show: true,
+                getDotPainter: (spot, percent, barData, index) {
+                  return FlDotCirclePainter(
+                    color: Colors.white,
+                    strokeWidth: 2,
+                    strokeColor: Colors.blue,
+                  );
+                },
+              ),
               barWidth: 4,
               isStrokeCapRound: true,
             ),
           ],
           lineTouchData: LineTouchData(enabled: true),
           maxX: 2,
-          maxY: weather.forecast.map((e) => e.temperature).reduce((a, b) => a > b ? a : b).toDouble(),
+          minX: 0,
+          minY: weather.forecast.map((e) => e.temperature).reduce((a, b) => a < b ? a : b).toDouble() - 5,
+          maxY: weather.forecast.map((e) => e.temperature).reduce((a, b) => a > b ? a : b).toDouble() + 5,
         ),
       ),
     );

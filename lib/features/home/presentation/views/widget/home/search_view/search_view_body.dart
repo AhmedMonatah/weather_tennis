@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/core/helper_function/get_current_location_and_city.dart';
 import 'package:weather_app/core/helper_function/get_user.dart';
-import 'package:weather_app/features/home/presentation/manger/cubits/weather_cubit/weather_cubit.dart';
 import 'package:weather_app/features/home/presentation/views/widget/extract_widget/custome_home_text_field.dart';
 import 'package:weather_app/features/home/presentation/views/widget/extract_widget/search_button.dart';
-import 'package:weather_app/features/home/presentation/views/widget/home/weather_view/weather_view.dart';
 
-class SearchViewBody extends StatelessWidget {
+class SearchViewBody extends StatefulWidget {
+  @override
+  State<SearchViewBody> createState() => _SearchViewBodyState();
+}
+
+class _SearchViewBodyState extends State<SearchViewBody> {
   final TextEditingController cityController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Use the helper function
+    getCurrentLocationAndCity(cityController: cityController, context: context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +47,12 @@ class SearchViewBody extends StatelessWidget {
           const SizedBox(height: 40),
           Center(
             heightFactor: 4,
-            child: CustomeHomeTextField(cityController: cityController,),
+            child: CustomeHomeTextField(cityController: cityController),
           ),
           const SizedBox(height: 16),
-          SearchButton(cityController: cityController,title: 'Search'),
+          SearchButton(cityController: cityController, title: 'Search'),
         ],
       ),
     );
   }
 }
-

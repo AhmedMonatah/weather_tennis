@@ -30,13 +30,12 @@ class _WeatherPageState extends State<WeatherViewBody> {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width * 0.05,
-        vertical: MediaQuery.of(context).size.height * 0.01,
+        vertical: MediaQuery.of(context).size.height * 0.04,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppBarHomePage(icon: Icons.favorite, cityName: cityName),
-          const HeaderHomePage(),
           CondationWeather(selectedWeather: selectedWeather),
           const SizedBox(height: 30),
           WeatherForecastList(
