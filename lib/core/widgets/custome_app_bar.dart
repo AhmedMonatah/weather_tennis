@@ -11,7 +11,7 @@ AppBar BuildAppBar(BuildContext context, {required String title}) {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.arrow_back, color: Colors.white), // Ensure the icon is visible on the image
+            icon: const Icon(Icons.arrow_back, color: Colors.white), // Ensure the icon is visible on the image
           )
         : null,
     centerTitle: true,

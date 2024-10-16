@@ -16,12 +16,8 @@ class WeatherCubit extends Cubit<WeatherState> {
 
     try {
       final weather = await getWeather.call(city);
-      if (weather != null) {
-        emit(WeatherSuccess(weather));
-      } else {
-        emit(WeatherError('No weather data returned.'));
-      }
-    } catch (e) {
+      emit(WeatherSuccess(weather));
+        } catch (e) {
       log('Error fetching weather for $city: $e');
       emit(WeatherError('Failed to fetch weather for $city: ${e.toString()}'));
     }

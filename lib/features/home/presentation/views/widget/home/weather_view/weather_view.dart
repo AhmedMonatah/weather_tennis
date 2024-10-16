@@ -7,6 +7,6 @@ class WeatherView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WeatherBlocConsumer();
+    return const WeatherBlocConsumer();
   }
 }

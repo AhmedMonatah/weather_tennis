@@ -13,7 +13,7 @@ class SearchView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(backgroundColor: AppColor.PrimaryHomeColor,),
       backgroundColor: AppColor.PrimaryHomeColor, // dark blue background
-      body: SearchViewBody(),
+      body: const SearchViewBody(),
       
     );
   }

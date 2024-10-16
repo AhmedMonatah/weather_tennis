@@ -21,7 +21,6 @@ class SearchButton extends StatelessWidget {
           context.read<WeatherCubit>().fetchWeather(city);
        Navigator.pushReplacementNamed(context, WeatherView.routeName);
         },
-        child: Text(title),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blue,
           padding:
@@ -30,6 +29,7 @@ class SearchButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
         ),
+        child: Text(title),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/features/home/presentation/manger/cubits/weather_cubit/weather_cubit.dart';
 import 'package:weather_app/features/home/presentation/manger/cubits/weather_cubit/weather_state.dart';
 import 'package:weather_app/features/home/presentation/views/widget/home/fav_view/favorite_view_body.dart';
+import 'package:weather_app/features/home/presentation/views/widget/home/prediction_view/Prediction_view.dart';
 import 'package:weather_app/features/home/presentation/views/widget/home/search_view/search_view.dart';
 import 'package:weather_app/features/home/presentation/views/widget/home/weather_view/weather_view_body.dart';
 
@@ -21,7 +22,7 @@ List<Widget> buildPages(BuildContext context) {
               children: [
                 const Text(
                   'Oops! Something went wrong.',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -67,7 +68,21 @@ List<Widget> buildPages(BuildContext context) {
         }
       },
     ),
-    FavoriteViewBody(),
-    const Center(child: Text('Check View ')), // Placeholder for the third tab
+    const FavoriteViewBody(),
+    // Adding Prediction Page with weather data
+    BlocBuilder<WeatherCubit, WeatherState>(
+      builder: (context, state) {
+        if (state is WeatherSuccess) {
+          return PreductionView(weather: state.weather);
+        } else {
+          return const Center(
+            child: Text(
+              'No prediction data available',
+              style: TextStyle(color: Colors.white),
+            ),
+          );
+        }
+      },
+    ),
   ];
 }

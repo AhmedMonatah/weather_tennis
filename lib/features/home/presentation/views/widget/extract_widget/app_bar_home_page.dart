@@ -8,7 +8,7 @@ class AppBarHomePage extends StatefulWidget {
   final IconData icon;
   final String cityName;
 
-  AppBarHomePage({required this.icon, required this.cityName});
+  const AppBarHomePage({super.key, required this.icon, required this.cityName});
 
   @override
   _AppBarHomePageState createState() => _AppBarHomePageState();

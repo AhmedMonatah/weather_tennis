@@ -21,7 +21,7 @@ class HeaderHomePage extends StatelessWidget {
             color: Colors.blueAccent,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
           Text(
             getUser().name,
             style: const TextStyle(

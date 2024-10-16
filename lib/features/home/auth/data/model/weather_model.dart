@@ -2,20 +2,13 @@ import 'package:weather_app/features/home/auth/data/domin/entites/weather_entity
 
 class WeatherModel extends Weather {
   WeatherModel({
-    required double temperature,
-    required String condition,
-    required double windSpeed,
-    required num humidity,
-    required num cloudCover,
-    required List<WeatherDay> forecast,
-  }) : super(
-          temperature: temperature,
-          condition: condition,
-          windSpeed: windSpeed,
-          humidity: humidity,
-          cloudCover: cloudCover,
-          forecast: forecast,
-        );
+    required super.temperature,
+    required super.condition,
+    required super.windSpeed,
+    required super.humidity,
+    required super.cloudCover,
+    required super.forecast,
+  });
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     // Safely parse forecast data with null checks
@@ -38,5 +31,15 @@ class WeatherModel extends Weather {
       cloudCover: json['current']['cloud'] ?? 0, 
       forecast: forecast,
     );
+  }
+    // Method to generate the condition list
+  List<int> getConditionList() {
+    return [
+      cloudCover > 7 ? 1 : 0,    
+      (condition == 'Sunny' || condition == 'Clear') ? 0 : 1,  
+      windSpeed > 35 ? 1 : 0,
+      temperature > 35 ? 1 : 0,    
+      humidity > 4 ? 1 : 0,      
+    ];
   }
 }

@@ -22,13 +22,16 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomCheckBox(
-          onChecked: (value) {
-            isTermsAccepted = value;
-            widget.onChanged(value);
-            setState(() {});
-          },
-          isChecked: isTermsAccepted,
+        Padding(
+          padding: const EdgeInsets.only(left:10.0),
+          child: CustomCheckBox(
+            onChecked: (value) {
+              isTermsAccepted = value;
+              widget.onChanged(value);
+              setState(() {});
+            },
+            isChecked: isTermsAccepted,
+          ),
         ),
         const SizedBox(
           width: 16,
