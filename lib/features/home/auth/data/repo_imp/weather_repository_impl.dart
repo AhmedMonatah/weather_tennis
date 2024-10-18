@@ -4,7 +4,7 @@ import 'package:weather_app/features/home/auth/data/domin/entites/weather_entity
 import 'package:weather_app/features/home/auth/data/domin/repos/weather_repository.dart';
 import 'package:weather_app/features/home/auth/data/model/weather_model.dart';
 class WeatherRepositoryImpl implements WeatherRepository {
-  final String apiKey = '084b7b01f7864f8890b182932241709';
+  final String apiKey = '';
 
   @override
   Future<Weather> getWeather(String city) async {

@@ -18,7 +18,7 @@ class WeatherForecastList extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.12, // 12% of screen height
+      height: MediaQuery.of(context).size.height * 0.15, // 12% of screen height
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: weather.forecast.length,

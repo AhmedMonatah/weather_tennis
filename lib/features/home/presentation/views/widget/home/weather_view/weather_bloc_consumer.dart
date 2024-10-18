@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/features/home/presentation/manger/cubits/weather_cubit/weather_cubit.dart';
 import 'package:weather_app/features/home/presentation/manger/cubits/weather_cubit/weather_state.dart';
-import 'package:weather_app/features/home/presentation/views/widget/extract_widget/app_bar_home_page.dart';
 import 'package:weather_app/features/home/presentation/views/widget/extract_widget/bottom_navigation_bar.dart';
 import 'package:weather_app/features/home/presentation/views/widget/home/weather_view/weather_view_body.dart';
 

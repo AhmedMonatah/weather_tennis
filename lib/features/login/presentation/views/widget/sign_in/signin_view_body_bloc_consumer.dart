@@ -15,9 +15,8 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<SigninCubit, SigninState>(
       listener: (context, state) {
         if (state is SigninSuccess) {
-          // Pass the user's name when navigating to the HomeView
           Navigator.pushReplacementNamed(
-            context, 
+            context,
             SearchView.routeName,
           );
         }
@@ -27,9 +26,10 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        // Provide a simple default WeatherModel instance
         return CustomProgressHud(
           isLoading: state is SigninLoading ? true : false,
-          child: const SigninViewBody(),
+          child: const SigninViewBody()
         );
       },
     );
